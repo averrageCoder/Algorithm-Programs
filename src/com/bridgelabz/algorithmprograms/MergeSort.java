@@ -5,13 +5,22 @@ import java.util.Arrays;
 class MergeSort
 {
 
-    void merge(String arr[], int l, int m, int r)
+	@SafeVarargs
+    static <E> E[] newArray(int length, E... array)
+    {
+        return Arrays.copyOf(array, length);
+    }
+	
+    static <E extends Comparable<E>> void merge(E arr[], int l, int m, int r)
     {
         int n1 = m - l + 1;
         int n2 = r - m;
  
-        String L[] = new String[n1];
-        String R[] = new String[n2];
+        E[] L;
+        E[] R;
+        
+        L = newArray(n1);
+        R = newArray(n2);
  
         for (int i = 0; i < n1; ++i)
             L[i] = arr[l + i];
@@ -47,8 +56,7 @@ class MergeSort
         }
     }
  
-    void sort(String arr[], int l, int r)
-    {
+    static <E extends Comparable<E>> void sort (E arr[], int l, int r) {
         if (l < r) {
             int m =l+ (r-l)/2;
             sort(arr, l, m);
@@ -59,12 +67,12 @@ class MergeSort
   
     public static void main(String args[])
     {
-    	String[] inputArray = {"Emma","Dave","Cindy","Bom","Andy","Bob"};
+//    	String[] inputArray = {"Emma","Dave","Cindy","Bom","Andy","Bob"};
+    	Integer[] inputArray = { 1,5,-1,45,-10};
  
         System.out.println("Before merge sort: "+ Arrays.toString(inputArray));
- 
-        MergeSort ob = new MergeSort();
-        ob.sort(inputArray, 0, inputArray.length - 1);
+
+        sort(inputArray, 0, inputArray.length - 1);
  
         System.out.println("After merge sort: "+ Arrays.toString(inputArray));
     }
