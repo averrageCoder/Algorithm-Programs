@@ -4,20 +4,26 @@ import java.util.Arrays;
 
 public class BubbleSort {
 	
-	public static void main(String []args) {
-		Integer integer_array[] = { 1,5,-1,45,-10};
-		Integer temp;
-		System.out.println("Before bubble sort: "+ Arrays.toString(integer_array));
-		for (int j = 0; j < integer_array.length; j++) {
-	   	   for (int i = j + 1; i < integer_array.length; i++) {
-			if (integer_array[i].compareTo(integer_array[j]) < 0) {
-				temp = integer_array[j];
-				integer_array[j] = integer_array[i];
-				integer_array[i] = temp;
+	public static <E extends Comparable<E>> E[] bubbleSort(E[] inputArray) {
+		E temp;
+		for (int j = 0; j < inputArray.length; j++) {
+		   	   for (int i = j + 1; i < inputArray.length; i++) {
+				if (inputArray[i].compareTo(inputArray[j]) < 0) {
+					temp = inputArray[j];
+					inputArray[j] = inputArray[i];
+					inputArray[i] = temp;
+				}
+			   }
 			}
-		   }
-		}
-		System.out.println("After bubble sort: "+ Arrays.toString(integer_array));
+		return inputArray;
+	}
+	
+	public static void main(String []args) {
+		//Integer inputArray[] = { 1,5,-1,45,-10};
+		String[] inputArray = {"Emma","Dave","Cindy","Bom","Andy","Bob"};
+		System.out.println("Before bubble sort: "+ Arrays.toString(inputArray));
+		inputArray = bubbleSort(inputArray);
+		System.out.println("After bubble sort: "+ Arrays.toString(inputArray));
 	   }
 
 }
